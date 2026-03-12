@@ -7,31 +7,31 @@ Algoritmo CalcTriangulos
 	Repetir
 		Limpiar Pantalla
 		Escribir ""
-		Escribir "                Clasificador de Triángulos"
+		Escribir "                Clasificador de TriÃ¡ngulos"
 		Escribir "_________________________________________________________________"
-		Escribir "               ¿Qué datos deseas ingresar?"
+		Escribir "               Â¿QuÃ© datos deseas ingresar?"
 		Escribir "                  [1] Los tres lados"
-		Escribir "                  [2] Los tres ángulos"
+		Escribir "                  [2] Los tres Ã¡ngulos"
 		Escribir "_________________________________________________________________"
 		Escribir ""
 		Leer opcion
 		Si opcion <> 1 Y opcion <> 2 Entonces
 			Escribir ""
 			Escribir "_________________________________________________________________"
-			Escribir "              Opción inválida. Ingrese 1 o 2"
+			Escribir "              OpciÃ³n invÃ¡lida. Ingrese 1 o 2"
 			Escribir "_________________________________________________________________"
 			Escribir ""
 			Esperar Tecla
 		FinSi
 	Hasta Que opcion = 1 O opcion = 2
 	
-	//  OPCIÓN 1: LADOS =
+	//  OPCIÃ“N 1: LADOS =
 	Si opcion = 1 Entonces
 		valido <- Falso
 		Mientras valido = Falso Hacer
 			Limpiar Pantalla
 			Escribir ""
-			Escribir "       Ingresa los tres lados en centímetros "
+			Escribir "       Ingresa los tres lados en centÃ­metros "
 		    Escribir "        (valores positivos de 0 a infinito):"
 			Escribir ""
 			Escribir "  Lado a: "
@@ -54,7 +54,7 @@ Algoritmo CalcTriangulos
 				Si a+b <= c O a+c <= b O b+c <= a Entonces
 					Escribir ""
 					Escribir "_________________________________________________________________"
-					Escribir "       Error: esos valores no forman un triángulo válido"
+					Escribir "       Error: esos valores no forman un triÃ¡ngulo vÃ¡lido"
 					Escribir "_________________________________________________________________"
 					Escribir ""
 					Esperar Tecla
@@ -78,12 +78,12 @@ Algoritmo CalcTriangulos
 		Escribir ""
 		Esperar Tecla
 		
-		// Acá elige el tipo de triángulo por sus lados
+		// AcÃ¡ elige el tipo de triÃ¡ngulo por sus lados
 		Si a = b Y b = c Entonces
-			tipolado <- "Equilátero"
+			tipolado <- "EquilÃ¡tero"
 		FinSi
 		Si (a <> b O b <> c) Y (a = b O b = c O a = c) Entonces
-			tipolado <- "Isósceles"
+			tipolado <- "IsÃ³sceles"
 		FinSi
 		Si a <> b Y b <> c Y a <> c Entonces
 			tipolado <- "Escaleno"
@@ -101,40 +101,40 @@ Algoritmo CalcTriangulos
 		FinSi
 		
 		Si abs(cosMax) < 0.0001 Entonces
-			tipoangulo <- "Rectángulo"
+			tipoangulo <- "RectÃ¡ngulo"
 		FinSi
 		Si cosMax > 0.0001 Entonces
-			tipoangulo <- "Acutángulo"
+			tipoangulo <- "AcutÃ¡ngulo"
 		FinSi
 		Si cosMax < -0.0001 Entonces
-			tipoangulo <- "Obtusángulo"
+			tipoangulo <- "ObtusÃ¡ngulo"
 		FinSi
 		
-		// Área por fórmula de "Herón"
+		// Ãrea por fÃ³rmula de "HerÃ³n"
 		s <- (a + b + c) / 2
 		area <- raiz(s * (s-a) * (s-b) * (s-c))
 	FinSi
 	
-	//  OPCIÓN 2: ÁNGULOS
+	//  OPCIÃ“N 2: ÃNGULOS
 	Si opcion = 2 Entonces
 		valido <- Falso
 		Mientras valido = Falso Hacer
 			Limpiar Pantalla
 			Escribir ""
-			Escribir "      Ingresa los tres ángulos en grados (deben sumar 180°):"
+			Escribir "      Ingresa los tres Ã¡ngulos en grados (deben sumar 180Â°):"
 			Escribir ""
-			Escribir "  Ángulo A: "
+			Escribir "  Ãngulo A: "
 			Leer a
 			Escribir ""
-			Escribir "  Ángulo B: "
+			Escribir "  Ãngulo B: "
 			Leer b
 			Escribir ""
-			Escribir "  Ángulo C: "
+			Escribir "  Ãngulo C: "
 			Leer c
 			Si a <= 0 O b <= 0 O c <= 0 Entonces
 				Escribir ""
 				Escribir "_________________________________________________________________"
-				Escribir "         Error: los ángulos deben ser mayores que 0°"
+				Escribir "         Error: los Ã¡ngulos deben ser mayores que 0Â°"
 				Escribir "_________________________________________________________________"
 				Escribir ""
 				Esperar Tecla
@@ -143,7 +143,7 @@ Algoritmo CalcTriangulos
 				Si abs(a + b + c - 180) > 0.01 Entonces
 					Escribir ""
 					Escribir "_________________________________________________________________"
-					Escribir "         Error: los ángulos deben sumar 180°"
+					Escribir "         Error: los Ã¡ngulos deben sumar 180Â°"
 					Escribir "                  Tu suma fue: ", a+b+c
 					Escribir "_________________________________________________________________"
 					Escribir ""
@@ -156,10 +156,10 @@ Algoritmo CalcTriangulos
 		
 		Limpiar Pantalla
 		Escribir ""
-		Escribir "                     Los ángulos ingresados son:"
-		Escribir "                              A = ", a, "°"
-		Escribir "                              B = ", b, "°"
-		Escribir "                              C = ", c, "°"
+		Escribir "                     Los Ã¡ngulos ingresados son:"
+		Escribir "                              A = ", a, "Â°"
+		Escribir "                              B = ", b, "Â°"
+		Escribir "                              C = ", c, "Â°"
 		Escribir ""
 		Escribir "_________________________________________________________________"
 		Escribir "         Si esto es correcto, presione cualquier tecla,"
@@ -168,41 +168,41 @@ Algoritmo CalcTriangulos
 		Escribir ""
 		Esperar Tecla
 		
-		// Tipo por sus ángulos
+		// Tipo por sus Ã¡ngulos
 		Si abs(a-90) < 0.01 O abs(b-90) < 0.01 O abs(c-90) < 0.01 Entonces
-			tipoangulo <- "Rectángulo"
+			tipoangulo <- "RectÃ¡ngulo"
 		FinSi
 		Si a > 90 O b > 90 O c > 90 Entonces
-			tipoangulo <- "Obtusángulo"
+			tipoangulo <- "ObtusÃ¡ngulo"
 		FinSi
 		Si a < 90 Y b < 90 Y c < 90 Entonces
-			tipoangulo <- "Acutángulo"
+			tipoangulo <- "AcutÃ¡ngulo"
 		FinSi
 		
-		// Tipo por lados para sección angulos
+		// Tipo por lados para secciÃ³n angulos
 		Si abs(a-b) < 0.01 Y abs(b-c) < 0.01 Entonces
-			tipolado <- "Equilátero"
+			tipolado <- "EquilÃ¡tero"
 		FinSi
 		Si abs(a-b) >= 0.01 O abs(b-c) >= 0.01 Entonces
 			Si abs(a-b) < 0.01 O abs(b-c) < 0.01 O abs(a-c) < 0.01 Entonces
-				tipolado <- "Isósceles"
+				tipolado <- "IsÃ³sceles"
 			FinSi
 			Si abs(a-b) >= 0.01 Y abs(b-c) >= 0.01 Y abs(a-c) >= 0.01 Entonces
 				tipolado <- "Escaleno"
 			FinSi
 		FinSi
 		
-		// Acá se pide un lado para calcular el área (ley de senos)
+		// AcÃ¡ se pide un lado para calcular el Ã¡rea (ley de senos)
 		Limpiar Pantalla
 		Escribir ""
 		Escribir "_________________________________________________________________"
-		Escribir "          Para calcular el área con los ángulos se 
+		Escribir "          Para calcular el Ã¡rea con los Ã¡ngulos se 
 		Escribir "                necesita al menos un lado."
 		Escribir "_________________________________________________________________"
 		Escribir ""
-		Escribir "  Ingresa el lado opuesto al ángulo A (: "
+		Escribir "  Ingresa el lado opuesto al Ã¡ngulo A (: "
 		Leer lado1
-		area <- (lado1 * lado1 * sen(b * 3.14159265 / 180) * sen(c * 3.14159265 / 180)) / (2 * sen(a * 3.14159265 / 180)) // Uy profe esta fórmula casi me saca canas, jodí y jodí hasta que llegué a la función de seno con pi por 180 que siempre son los grados de un triángulo :(
+		area <- (lado1 * lado1 * sen(b * 3.14159265 / 180) * sen(c * 3.14159265 / 180)) / (2 * sen(a * 3.14159265 / 180)) // Uy profe esta fÃ³rmula casi me saca canas, jodÃ­ y jodÃ­ hasta que lleguÃ© a la funciÃ³n de seno con pi por 180 que siempre son los grados de un triÃ¡ngulo :(
 	FinSi
 	
 	// RESULTADOS
@@ -211,40 +211,40 @@ Algoritmo CalcTriangulos
 	Escribir ""
 	Escribir ""
 	Escribir ""
-	Escribir "              El triángulo ingresado es:"
+	Escribir "              El triÃ¡ngulo ingresado es:"
 	Escribir "_________________________________________________________________"
 	Escribir ""
 	Escribir "               Tipo por lados:    ", tipolado
-	Escribir "               Tipo por ángulos:  ", tipoangulo
-	Escribir "               Área:              ", Redon(area*100)/100, " centímetros cuadrados"
+	Escribir "               Tipo por Ã¡ngulos:  ", tipoangulo
+	Escribir "               Ãrea:              ", Redon(area*100)/100, " centÃ­metros cuadrados"
 	Escribir ""
 	Escribir "_________________________________________________________________"
 	Escribir "                    Y debe verse algo similar a: "
 	// DIBUJITOOOOOOOOOOOOOOOOOOOOOOOOOOSSSSSSSS
-	Si tipolado = "Equilátero" Entonces
+	Si tipolado = "EquilÃ¡tero" Entonces
 		Escribir "                                /\"
 		Escribir "                               /  \"
 		Escribir "                              /    \"
 		Escribir "                             /______\ *Sus 3 lados miden lo mismo"
 	FinSi
-	Si tipoangulo = "Rectángulo" Y tipolado <> "Equilátero" Entonces
+	Si tipoangulo = "RectÃ¡ngulo" Y tipolado <> "EquilÃ¡tero" Entonces
 		Escribir "                             |\"
 		Escribir "                             | \"
 		Escribir "                             |  \"
-		Escribir "                             |___\ *Uno de los ángulos es de exactamente 90°"
+		Escribir "                             |___\ *Uno de los Ã¡ngulos es de exactamente 90Â°"
 	FinSi
-	Si tipoangulo = "Obtusángulo" Entonces
+	Si tipoangulo = "ObtusÃ¡ngulo" Entonces
 		Escribir "                          *"
 		Escribir "                           \  \ "
 		Escribir "                            \    \"
 		Escribir "                             \     \"
-		Escribir "                              -------- *Uno de sus ángulos mayor a 90°"
+		Escribir "                              -------- *Uno de sus Ã¡ngulos mayor a 90Â°"
 	FinSi
-	Si tipoangulo = "Acutángulo" Y tipolado <> "Equilátero" Entonces
+	Si tipoangulo = "AcutÃ¡ngulo" Y tipolado <> "EquilÃ¡tero" Entonces
 		Escribir "                        /\"
 		Escribir "                       /  \"
 		Escribir "                      /    \"
-		Escribir "                     /______\ *Todos sus ángulos son menores a 90°"
+		Escribir "                     /______\ *Todos sus Ã¡ngulos son menores a 90Â°"
 	FinSi
 	
 	Escribir ""
