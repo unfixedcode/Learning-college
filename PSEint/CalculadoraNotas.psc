@@ -28,21 +28,21 @@ Algoritmo CalculadoraNotasUlti
 	Si nota1<= 5.0 y nota2 <= 5.0 y nota3 <= 5.0 entonces
 		Si nota1 >= 0.0 y nota2 >= 0.0 y nota3 >= 0.0 entonces
 			res1 <- (nota1 + nota2 + nota3)/3	
-			res2 <- Redon(res1*100)/100 //Tuve que buscar en internet cómo era lo que me había dicho para 
-			// redondear decimales profe y no encontré en la wiki de Pseint, por lo que recurrí a internet
-			// y lo encontré jajaja no fue IA ¿ok?
+			res2 <- Redon(res1*100)/100 //Tuve que buscar en internet cÃ³mo era lo que me habÃ­a dicho para 
+			// redondear decimales profe y no encontrÃ© en la wiki de Pseint, por lo que recurrÃ­ a internet
+			// y lo encontrÃ© jajaja no fue IA Â¿ok?
 			Escribir ""
 			Escribir "          El promedio de sus notas totales es: " res2
 			Si res1 >= 3.0 Entonces
 				Escribir ""
 				Escribir "_________________________________________________________________"
-				Escribir "      Su promedio es SUPERIOR al mínimo requerido (3.0)"
-				Escribir "             ¡FELICIDADES! Ha pasado la materia"
+				Escribir "      Su promedio es SUPERIOR al mÃ­nimo requerido (3.0)"
+				Escribir "             Â¡FELICIDADES! Ha pasado la materia"
 				Escribir "_________________________________________________________________"
 			SiNo
 				Escribir "_________________________________________________________________"
-				Escribir "      Su promedio es INFERIOR al mínimo requerido (3.0)."
-				Escribir "                 ¡¡ HA PERDIDO LA MATERIA !!"
+				Escribir "      Su promedio es INFERIOR al mÃ­nimo requerido (3.0)."
+				Escribir "                 Â¡Â¡ HA PERDIDO LA MATERIA !!"
 				Escribir "_________________________________________________________________"
 				
 			FinSi
@@ -50,7 +50,7 @@ Algoritmo CalculadoraNotasUlti
 			Escribir ""
 			Escribir ""
 			Escribir "_________________________________________________________________"
-			Escribir "         Números fuera del rango ingresados (0.0 - 5.0),"
+			Escribir "         NÃºmeros fuera del rango ingresados (0.0 - 5.0),"
 			Escribir "                por favor reinicie el programa"
 			Escribir "_________________________________________________________________"
 			Escribir ""
@@ -60,7 +60,7 @@ Algoritmo CalculadoraNotasUlti
 		Escribir ""
 		Escribir ""
 		Escribir "_________________________________________________________________"
-		Escribir "         Números fuera del rango ingresados (0.0 - 5.0),"
+		Escribir "         NÃºmeros fuera del rango ingresados (0.0 - 5.0),"
 		Escribir "                por favor reinicie el programa"
 		Escribir "_________________________________________________________________"
 		Escribir ""
