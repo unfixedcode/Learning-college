@@ -1,5 +1,5 @@
 Algoritmo Puente
-	// Vamos a cruzar el puente en m·ximo 15 minutos
+	// Vamos a cruzar el puente en m√°ximo 15 minutos
 	// 
 	DAVID <- 1
 	LAURA <- 2
@@ -17,7 +17,7 @@ Algoritmo Puente
 	// Tercer cruce - Laura+David
 	tiempo <- tiempo + LAURA
 	
-	Escribir "El tiempo total que tomÛ fue: ", tiempo, " minutos"
+	Escribir "El tiempo total que tom√≥ fue: ", tiempo, " minutos"
 	
 	si tiempo <=15 Entonces
 			Escribir "Todos pasaron y sobrevivieron al asesino"
