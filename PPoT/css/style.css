@@ -1,44 +1,267 @@
-body {
-    font-family:fantasy, Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
+/* Fredoka One como display principal, fantasy de respaldo */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+:root {
+    --verde:       #4CAF50;
+    --verde-bg:    #1a4a1f;
+    --rojo-bg:     #4a1010;
+    --amarillo-bg: #4a3200;
+    --azul-j1:     #1565C0;
+    --naranja-j2:  #bf5100;
+    --oscuro:      #0d1b2a;
+    --card:        #162035;
+    --borde:       #1e3a5f;
+    --texto:       #f0f0f0;
 }
 
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Fredoka One', fantasy, Arial, sans-serif;
+    background-color: var(--oscuro);
+    color: var(--texto);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.6s ease;
+}
+
+/* ─── MARCADOR ─────────────────────────────────────────────── */
+.marcador {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 16px;
+    z-index: 100;
+    border-bottom: 2px solid var(--verde);
+    font-size: 1rem;
+    gap: 10px;
+}
+#marc-ronda { color: #8aa; font-size: 0.82rem; text-align: center; }
+.btn-terminar {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 4px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+.btn-terminar:hover { background: #c0392b; border-color: #c0392b; }
+
+/* ─── PANTALLAS ─────────────────────────────────────────────── */
+.pantalla {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 20px 70px;
+    text-align: center;
+}
+.pantalla.activo {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── TIPOGRAFÍA ─────────────────────────────────────────────── */
+h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin: 0 0 4px;
+    letter-spacing: 6px;
+}
+h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    margin: 0 0 12px;
+}
+.subtitulo { color: #8aa; margin: 0 0 28px; font-size: 1rem; }
+.aviso { margin-bottom: 22px; line-height: 1.7; }
+.aviso small { opacity: 0.7; font-size: 0.85rem; }
+
+/* ─── BOTONES ────────────────────────────────────────────────── */
+.btn-grupo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+button {
+    background-color: var(--verde);
+    color: white;
+    padding: 11px 22px;
+    border: 2px solid var(--verde);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.4;
+    transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
+}
+button:hover {
+    background-color: #43a047;
+    transform: scale(1.06);
+    box-shadow: 0 4px 18px rgba(76,175,80,0.45);
+}
+button:active { transform: scale(0.97); }
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Botones grandes (opciones de juego) */
+.btn-grupo.grande button {
+    font-size: 1.25rem;
+    padding: 14px 26px;
+    min-width: 120px;
+}
+
+.btn-volver {
+    background: transparent;
+    border-color: #445;
+    color: #8aa;
+    font-size: 0.9rem;
+    margin-top: 18px;
+    padding: 8px 16px;
+}
+.btn-volver:hover { background: #222; box-shadow: none; border-color: #667; }
+
+.btn-siguiente { margin-top: 22px; font-size: 1.1rem; }
+
+/* ─── REGLAS BIG BANG ────────────────────────────────────────── */
+.reglas-lista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 18px;
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 22px;
+    max-width: 520px;
+    width: 100%;
+}
+.regla {
+    background: rgba(255,255,255,0.04);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+/* ─── RESULTADO VS CPU ───────────────────────────────────────── */
+.resultado-2col {
+    display: flex;
+    gap: 18px;
+    margin: 18px 0 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.res-box {
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 18px 28px;
+    min-width: 130px;
+    text-align: center;
+}
+.etiq   { color: #8aa; font-size: 0.82rem; margin: 0 0 4px; }
+.emoji-g { font-size: 3.5rem; margin: 8px 0; line-height: 1; }
+.res-txt { font-size: 1.15rem; margin: 8px 0; font-weight: bold; }
+.motivo-txt { font-size: 0.78rem; color: #bcd; display: block; margin-top: 3px; }
+
+/* ─── FONDOS DE TURNO 2P ─────────────────────────────────────── */
+.fondo-j1 { background-color: var(--azul-j1); }
+.fondo-j2 { background-color: var(--naranja-j2); }
+.fondo-trans { background-color: #111; }
+
+/* ─── CUENTA REGRESIVA ───────────────────────────────────────── */
+.cuenta-grande {
+    font-size: 9rem;
+    color: var(--verde);
+    line-height: 1;
+    animation: pulso 1s ease-in-out infinite;
+}
+@keyframes pulso {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.18); }
+}
+
+/* ─── PANTALLA SPLIT 2P ──────────────────────────────────────── */
+#pantalla-resultado-2p.activo {
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0;
+    position: relative;
+}
+.mitad {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px 80px;
+    min-height: 100vh;
+    background-color: var(--card);
+    transition: background-color 0.5s ease;
+}
+.mitad .emoji-g  { font-size: 5rem; }
+.mitad .etiq     { font-size: 1.1rem; color: #ddd; }
+.mitad .res-txt  { font-size: 1.5rem; }
+
+.btn-flotante {
+    position: fixed;
+    bottom: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ─── PANTALLA FINAL ─────────────────────────────────────────── */
+.resumen {
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 24px 40px;
+    margin: 18px 0 28px;
+    font-size: 1.15rem;
+    line-height: 2.2;
+}
+.resumen strong { color: var(--verde); font-size: 1.4rem; }
+
+/* ─── UTILIDADES ─────────────────────────────────────────────── */
+.oculto { display: none !important; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
 footer {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #333;
+    bottom: 0; left: 0; right: 0;
+    background-color: #000;
     color: #fff;
     text-align: center;
     padding: 10px;
     font-size: 14px;
+    z-index: 100;
+    border-top: 1px solid #222;
 }
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border:solid 1px #4CAF50;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-footer a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+footer a { color: var(--verde); text-decoration: none; }
+footer a:hover { text-decoration: underline; }

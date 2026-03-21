@@ -3,45 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica JS</title>
+    <title>Piedra, Periódico o Tijera (Teoría de juegos)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <script>
-        // Suma
-            let tipocalc, num1, num2, respuesta
-                tipocalc = "SUMAR"
-                num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
-                num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
-                respuesta = num1 + num2
-            alert("Al "+tipocalc+" da: "+respuesta)
 
-        // Resta
-            tipocalc = "RESTAR"
-            num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
-            num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
-            respuesta = num1 - num2
-            alert("Al "+tipocalc+" da: "+respuesta)
 
-        // Multiplicar
-            tipocalc = "MULTIPLICAR"
-            num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
-            num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
-            respuesta = num1 * num2
-            alert("Al "+tipocalc+" da: "+respuesta)
+<!-- Marcador fijo arriba -->
+<div id="marcador" class="marcador oculto">
+    <span id="marc-j1">J1: 0</span>
+    <span id="marc-ronda">Ronda 1</span>
+    <span id="marc-j2">CPU: 0</span>
+    <button class="btn-terminar" onclick="terminarJuego()" title="Terminar juego">⏹</button>
+</div>
 
-        // Dividir
-            tipocalc = "DIVIDIR"
-            num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
-            num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
-            respuesta = num1 / num2
-            alert("Al "+tipocalc+" da: "+respuesta)
-        // Condicionales
-            if(num1>num2){
-                alert("El número mayor es "+num1)
-            } else {
-               alert("El número mayor es "+num2)
-            }
-        
-    </script>
+<!-- 1. INICIO -->
+<div id="pantalla-inicio" class="pantalla activo">
+    <h1>🪨 🗞️ ✂️</h1>
+    <h2>Piedra, Periódico o Tijera</h2>
+    <p class="subtitulo">¿Cómo quieres jugar?</p>
+    <div class="btn-grupo">
+        <button onclick="elegirModo('cpu')">🤖 vs CPU</button>
+        <button onclick="elegirModo('2p')">👥 2 Jugadores</button>
+    </div>
+</div>
+
+<!-- 2. TIPO DE JUEGO -->
+<div id="pantalla-tipo" class="pantalla">
+    <h2>¿Qué versión?</h2>
+    <div class="btn-grupo">
+        <button onclick="elegirTipo('clasico')">🪨 🗞️ ✂️<br><small>Clásico</small></button>
+        <button onclick="elegirTipo('bigbang')">🪨 🗞️ ✂️ 🦎 🖖<br><small>Big Bang Theory</small></button>
+    </div>
+    <button class="btn-volver" onclick="mostrar('pantalla-inicio')">← Volver</button>
+</div>
+
+<!-- 3. RONDAS -->
+<div id="pantalla-rondas" class="pantalla">
+    <h2>¿Cómo llevar el marcador?</h2>
+    <div class="btn-grupo">
+        <button onclick="elegirRondas(3)">Mejor de 3</button>
+        <button onclick="elegirRondas(5)">Mejor de 5</button>
+        <button onclick="elegirRondas(7)">Mejor de 7</button>
+        <button onclick="elegirRondas(10)">Mejor de 10</button>
+        <button onclick="elegirRondas(0)">Marcador libre 📊</button>
+    </div>
+    <button class="btn-volver" onclick="mostrar('pantalla-tipo')">← Volver</button>
+</div>
+
+<!-- 4. REGLAS BIG BANG -->
+<div id="pantalla-reglas-bb" class="pantalla">
+    <h2>📖 Reglas — <em>Big Bang Theory Edition</em></h2>
+    <p class="subtitulo">Léelas bien antes de continuar 👀</p>
+    <div class="reglas-lista">
+        <div class="regla">✂️ Tijeras cortan 🗞️ Periódico</div>
+        <div class="regla">✂️ Tijeras decapitan 🦎 Lagarto</div>
+        <div class="regla">🗞️ Periódico cubre 🪨 Piedra</div>
+        <div class="regla">🗞️ Periódico refuta a 🖖 Spock</div>
+        <div class="regla">🪨 Piedra aplasta ✂️ Tijeras</div>
+        <div class="regla">🪨 Piedra aplasta 🦎 Lagarto</div>
+        <div class="regla">🦎 Lagarto envenena a 🖖 Spock</div>
+        <div class="regla">🦎 Lagarto come 🗞️ Periódico</div>
+        <div class="regla">🖖 Spock vaporiza 🪨 Piedra</div>
+        <div class="regla">🖖 Spock rompe ✂️ Tijeras</div>
+    </div>
+    <button onclick="iniciarJuego()">¡Entendido! Jugar 🎮</button>
+</div>
+
+<!-- 5. JUEGO VS CPU -->
+<div id="pantalla-juego-cpu" class="pantalla">
+    <h2>Elige tu opción</h2>
+    <div id="botones-cpu" class="btn-grupo grande"></div>
+    <div id="resultado-cpu" class="resultado-2col oculto">
+        <div id="res-j1" class="res-box"></div>
+        <div id="res-pc" class="res-box"></div>
+    </div>
+    <button id="btn-sig-cpu" class="oculto btn-siguiente" onclick="siguienteRonda()">Siguiente ronda ▶</button>
+</div>
+
+<!-- 6. 2P: TURNO J1 -->
+<div id="pantalla-turno-j1" class="pantalla fondo-j1">
+    <h2>🔵 Turno del Jugador 1</h2>
+    <p class="aviso">🙈 ¡Jugador 2, no mires!<br>
+    <small>Al elegir habrá 4 segundos para que J2 se prepare</small></p>
+    <div id="botones-j1" class="btn-grupo grande"></div>
+</div>
+
+<!-- 7. TRANSICIÓN 4 SEGUNDOS -->
+<div id="pantalla-transicion" class="pantalla fondo-trans">
+    <h2>✅ Jugador 1 ya eligió</h2>
+    <p>J1, tápate los ojos 🙈 · J2, ¡prepárate!</p>
+    <div id="cuenta-reg" class="cuenta-grande">4</div>
+</div>
+
+<!-- 8. 2P: TURNO J2 -->
+<div id="pantalla-turno-j2" class="pantalla fondo-j2">
+    <h2>🟠 Turno del Jugador 2</h2>
+    <p class="aviso">¡Es tu momento, elige!</p>
+    <div id="botones-j2" class="btn-grupo grande"></div>
+</div>
+
+<!-- 9. RESULTADO 2P (pantalla dividida) -->
+<div id="pantalla-resultado-2p" class="pantalla pantalla-split">
+    <div id="mitad-j1" class="mitad"></div>
+    <div id="mitad-j2" class="mitad"></div>
+    <button id="btn-sig-2p" class="btn-flotante" onclick="siguienteRonda()">Siguiente ronda ▶</button>
+</div>
+
+<!-- 10. PANTALLA FINAL -->
+<div id="pantalla-final" class="pantalla">
+    <h2 id="titulo-final">🏆 ¡Fin del juego!</h2>
+    <div id="resumen-final" class="resumen"></div>
+    <button onclick="reiniciar()">🔄 Jugar de nuevo</button>
+</div>
+
+<footer>
+    <p>Creado por: <a href="https://github.com/unfixedcode">Felipe Ayala</a></p>
+</footer>
+
+<script>
+// Estado
+let modo = '', tipo = '', maxRondas = 0;
+let pJ1 = 0, pJ2 = 0, ronda = 1;
+let eleccionJ1 = '', juegoTerminado = false;
+
+// Tablas de victorias (a vence a los del array)
+const ganaBB = {
+    '🪨': ['✂️','🦎'],
+    '🗞️': ['🪨','🖖'],
+    '✂️': ['🗞️','🦎'],
+    '🦎': ['🖖','🗞️'],
+    '🖖': ['🪨','✂️']
+};
+const ganaC = {
+    '🪨': ['✂️'],
+    '🗞️': ['🪨'],
+    '✂️': ['🗞️']
+};
+const motivo = {
+    '🪨-✂️': 'Piedra aplasta Tijeras',   '🪨-🦎': 'Piedra aplasta Lagarto',
+    '🗞️-🪨': 'Periódico cubre Piedra',   '🗞️-🖖': 'Periódico refuta a Spock',
+    '✂️-🗞️': 'Tijeras cortan Periódico', '✂️-🦎': 'Tijeras decapitan Lagarto',
+    '🦎-🖖': 'Lagarto envenena a Spock', '🦎-🗞️': 'Lagarto come Periódico',
+    '🖖-🪨': 'Spock vaporiza Piedra',    '🖖-✂️': 'Spock rompe Tijeras'
+};
+const nombres = { '🪨':'Piedra','🗞️':'Periódico','✂️':'Tijeras','🦎':'Lagarto','🖖':'Spock' };
+
+function mostrar(id) {
+    document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activo'));
+    document.getElementById(id).classList.add('activo');
+}
+
+function elegirModo(m) { modo = m; mostrar('pantalla-tipo'); }
+function elegirTipo(t) { tipo = t; mostrar('pantalla-rondas'); }
+
+function elegirRondas(n) {
+    maxRondas = n;
+    tipo === 'bigbang' ? mostrar('pantalla-reglas-bb') : iniciarJuego();
+}
+
+function iniciarJuego() {
+    pJ1 = 0; pJ2 = 0; ronda = 1; juegoTerminado = false;
+    document.body.style.backgroundColor = '';
+
+    let ops = tipo === 'bigbang' ? ['🪨','🗞️','✂️','🦎','🖖'] : ['🪨','🗞️','✂️'];
+    generarBotones('botones-cpu', ops, elegirCPU);
+    generarBotones('botones-j1', ops, elegirJ1);
+    generarBotones('botones-j2', ops, elegirJ2);
+
+    document.getElementById('marcador').classList.remove('oculto');
+    actualizarMarcador();
+
+    if (modo === 'cpu') {
+        limpiarCPU();
+        mostrar('pantalla-juego-cpu');
+    } else {
+        mostrar('pantalla-turno-j1');
+    }
+}
+
+function generarBotones(id, ops, fn) {
+    let c = document.getElementById(id);
+    c.innerHTML = '';
+    ops.forEach(op => {
+        let b = document.createElement('button');
+        b.innerHTML = op + ' ' + nombres[op];
+        b.onclick = () => fn(op);
+        c.appendChild(b);
+    });
+}
+
+function actualizarMarcador() {
+    let label2 = modo === 'cpu' ? 'CPU' : 'J2';
+    let tit = maxRondas > 0 ? `Ronda ${ronda} · Mejor de ${maxRondas}` : `Ronda ${ronda}`;
+    document.getElementById('marc-j1').textContent = 'J1: ' + pJ1;
+    document.getElementById('marc-ronda').textContent = tit;
+    document.getElementById('marc-j2').textContent = label2 + ': ' + pJ2;
+}
+
+function resultado(a, b) {
+    // Devuelve 'a', 'b' o 'empate'
+    if (a === b) return 'empate';
+    let t = tipo === 'bigbang' ? ganaBB : ganaC;
+    return (t[a] && t[a].includes(b)) ? 'a' : 'b';
+}
+
+// ─── VS CPU ────────────────────────────────────────────────────
+function elegirCPU(eleccion) {
+    if (juegoTerminado) return;
+    let ops = tipo === 'bigbang' ? ['🪨','🗞️','✂️','🦎','🖖'] : ['🪨','🗞️','✂️'];
+    let pc = ops[Math.floor(Math.random() * ops.length)]; // CPU elige al azar
+    let res = resultado(eleccion, pc);
+
+    let dj1 = document.getElementById('res-j1');
+    let dpc = document.getElementById('res-pc');
+
+    dj1.innerHTML = `<p class="etiq">Tú</p><p class="emoji-g">${eleccion}</p><p>${nombres[eleccion]}</p>`;
+    dpc.innerHTML = `<p class="etiq">CPU 🤖</p><p class="emoji-g">${pc}</p><p>${nombres[pc]}</p>`;
+
+    if (res === 'empate') {
+        document.body.style.backgroundColor = '#4a3200';
+        dj1.innerHTML += '<p class="res-txt">¡EMPATE! 🤝</p>';
+        dpc.innerHTML += '<p class="res-txt">¡EMPATE! 🤝</p>';
+    } else if (res === 'a') {
+        pJ1++;
+        document.body.style.backgroundColor = '#1a4a1f';
+        dj1.innerHTML += `<p class="res-txt">¡GANASTE! 🏆</p><span class="motivo-txt">${motivo[eleccion+'-'+pc]||''}</span>`;
+        dpc.innerHTML += '<p class="res-txt">Perdió 😔</p>';
+    } else {
+        pJ2++;
+        document.body.style.backgroundColor = '#4a1010';
+        dj1.innerHTML += '<p class="res-txt">Perdiste 😔</p>';
+        dpc.innerHTML += `<p class="res-txt">CPU gana 🤖</p><span class="motivo-txt">${motivo[pc+'-'+eleccion]||''}</span>`;
+    }
+
+    document.getElementById('resultado-cpu').classList.remove('oculto');
+    document.getElementById('btn-sig-cpu').classList.remove('oculto');
+    document.querySelectorAll('#botones-cpu button').forEach(b => b.disabled = true);
+    actualizarMarcador();
+    verificarFin();
+}
+
+function limpiarCPU() {
+    document.getElementById('resultado-cpu').classList.add('oculto');
+    document.getElementById('btn-sig-cpu').classList.add('oculto');
+    document.querySelectorAll('#botones-cpu button').forEach(b => b.disabled = false);
+}
+
+// ─── VS 2 JUGADORES ───────────────────────────────────────────
+function elegirJ1(eleccion) {
+    if (juegoTerminado) return;
+    eleccionJ1 = eleccion;
+    mostrar('pantalla-transicion');
+    let n = 4, el = document.getElementById('cuenta-reg');
+    el.textContent = n;
+    let iv = setInterval(() => {
+        n--;
+        el.textContent = n;
+        if (n <= 0) { clearInterval(iv); mostrar('pantalla-turno-j2'); }
+    }, 1000);
+}
+
+function elegirJ2(eleccion) {
+    if (juegoTerminado) return;
+    let res = resultado(eleccionJ1, eleccion);
+    let mj1 = document.getElementById('mitad-j1');
+    let mj2 = document.getElementById('mitad-j2');
+
+    mj1.innerHTML = `<p class="etiq">Jugador 1</p><p class="emoji-g">${eleccionJ1}</p><p>${nombres[eleccionJ1]}</p>`;
+    mj2.innerHTML = `<p class="etiq">Jugador 2</p><p class="emoji-g">${eleccion}</p><p>${nombres[eleccion]}</p>`;
+
+    if (res === 'empate') {
+        mj1.style.backgroundColor = '#4a3200'; mj2.style.backgroundColor = '#4a3200';
+        mj1.innerHTML += '<p class="res-txt">¡EMPATE! 🤝</p>';
+        mj2.innerHTML += '<p class="res-txt">¡EMPATE! 🤝</p>';
+    } else if (res === 'a') {
+        pJ1++;
+        mj1.style.backgroundColor = '#1a4a1f'; mj2.style.backgroundColor = '#4a1010';
+        mj1.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><span class="motivo-txt">${motivo[eleccionJ1+'-'+eleccion]||''}</span>`;
+        mj2.innerHTML += '<p class="res-txt">Pierde 😔</p>';
+    } else {
+        pJ2++;
+        mj1.style.backgroundColor = '#4a1010'; mj2.style.backgroundColor = '#1a4a1f';
+        mj1.innerHTML += '<p class="res-txt">Pierde 😔</p>';
+        mj2.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><span class="motivo-txt">${motivo[eleccion+'-'+eleccionJ1]||''}</span>`;
+    }
+
+    actualizarMarcador();
+    mostrar('pantalla-resultado-2p');
+    verificarFin();
+}
+
+// ─── LÓGICA DE FIN ────────────────────────────────────────────
+function verificarFin() {
+    if (maxRondas === 0) return; // modo libre, no termina solo
+    let mitad = Math.ceil(maxRondas / 2); // victorias para ganar la serie
+    let label2 = modo === 'cpu' ? 'CPU' : 'Jugador 2';
+    if (pJ1 >= mitad || pJ2 >= mitad) {
+        juegoTerminado = true;
+        let ganador = pJ1 >= mitad ? 'Jugador 1' : label2;
+        setTimeout(() => mostrarFinal('¡' + ganador + ' gana la serie! 🏆'), 1800);
+    }
+}
+
+function siguienteRonda() {
+    if (juegoTerminado) return;
+    ronda++;
+    document.body.style.backgroundColor = '';
+    document.getElementById('mitad-j1').style.backgroundColor = '';
+    document.getElementById('mitad-j2').style.backgroundColor = '';
+    actualizarMarcador();
+
+    if (modo === 'cpu') {
+        limpiarCPU();
+        mostrar('pantalla-juego-cpu');
+    } else {
+        mostrar('pantalla-turno-j1');
+    }
+}
+
+function terminarJuego() {
+    juegoTerminado = true;
+    mostrarFinal('Juego terminado ⏹');
+}
+
+function mostrarFinal(titulo) {
+    let label2 = modo === 'cpu' ? 'CPU' : 'Jugador 2';
+    document.getElementById('titulo-final').textContent = titulo;
+    document.getElementById('resumen-final').innerHTML = `
+        <p>Jugador 1: <strong>${pJ1}</strong> victorias</p>
+        <p>${label2}: <strong>${pJ2}</strong> victorias</p>
+        <p>Rondas jugadas: <strong>${ronda}</strong></p>
+    `;
+    document.getElementById('marcador').classList.add('oculto');
+    document.body.style.backgroundColor = '';
+    mostrar('pantalla-final');
+}
+
+function reiniciar() {
+    pJ1 = 0; pJ2 = 0; ronda = 1; juegoTerminado = false;
+    document.body.style.backgroundColor = '';
+    document.getElementById('marcador').classList.add('oculto');
+    mostrar('pantalla-inicio');
+}
+</script>
+
 </body>
 </html>
+
+<!-- EL SCRIPT ORIGINAL V1:
+<script>
+    let jugador1 = prompt("Vamos a jugar piedra🪨, periódico🗞️ o tijeras✂️")
+    let PC = '✂️'
+
+    if(jugador1 == PC){
+     alert("El jugador 1 y PC sacaron ✂️, ¡Es un empate!")}
+    else if(jugador1=="🗞️"){
+        alert("¡El jugador 1 pierde con 🗞️!")
+  }else if(jugador1=="🪨"){
+        alert("¡El jugador 1 gana con 🪨!")
+ }else
+     alert("Ingrese un emoji válido para jugar, por favor recargue la página")
+</script> 
+-->
+<!-- SCRIPT V2<body>
+    
+    <h1>¡Bienvenido al juego de periódico, papel o tijera!</h1>
+    <button onclick="location.reload()">JUGAR</button>
+    <script>
+        alert("¡Copia uno de estos emojis u oprime windows + . !: 🪨 para piedra, 🗞️ para papel o ✂️ para tijeras. ¡Buena suerte!")
+    </script>
+    <script>
+        let jugador1 = prompt("Vamos a jugar piedra 🪨, periódico 🗞️ o tijeras ✂️")
+        let PCNum = Math.floor(Math.random() * 3) // Genera un número aleatorio entre 0 y 3
+        let PC = PCNum == 0 ? '✂️' : PCNum == 1 ? '🗞️' : '🪨' // Esto vendría a ser como un "En caso de" de PSEint creo
+        if(jugador1 == PC){
+             alert("El jugador 1 y PC sacaron " + PC + ", ¡Es un EMPATE!")}
+        else if(jugador1=="🗞️"){ // Si el jugador elige periódico
+            if (PC == '✂️') {
+                 alert("¡El jugador 1 PIERDE con "+jugador1+"! PC sacó "+PC)
+            } else if (PC == '🪨') {
+                alert("¡El jugador 1 GANA con "+jugador1+"! PC sacó "+PC)
+            }
+        }
+        else if(jugador1=="🪨"){ // Si el jugador elige piedra
+            if (PC == '✂️') {
+                 alert("¡El jugador 1 GANA con "+jugador1+"! PC sacó "+PC)
+            } else if (PC == '🗞️') {
+                alert("¡El jugador 1 PIERDE con "+jugador1+"! PC sacó "+PC)
+            }
+        }
+        else if(jugador1=="✂️"){ // Si el jugador elige tijeras
+            if (PC == '🪨') {
+                 alert("¡El jugador 1 PIERDE con "+jugador1+"! PC sacó "+PC)
+            } else if (PC == '🗞️') {
+                alert("¡El jugador 1 GANA con "+jugador1+"! PC sacó "+PC)
+            }
+        }
+        else {
+             alert("Ingrese un emoji válido para jugar")
+             alert("Recuerde que solo son válidos piedra 🪨, periódico 🗞️ y tijeras ✂️, por favor recargue la página")
+        }
+    </script> -->
+<!-- SCRIPT CALCULADORA JS <script>
+// Suma
+    let tipocalc, num1, num2, respuesta
+        tipocalc = "SUMAR"
+        num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
+        num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
+        respuesta = num1 + num2
+    alert("Al "+tipocalc+" da: "+respuesta)
+
+// Resta
+    tipocalc = "RESTAR"
+    num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
+    num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
+    respuesta = num1 - num2
+    alert("Al "+tipocalc+" da: "+respuesta)
+
+// Multiplicar
+    tipocalc = "MULTIPLICAR"
+    num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
+    num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
+    respuesta = num1 * num2
+    alert("Al "+tipocalc+" da: "+respuesta)
+
+// Dividir
+    tipocalc = "DIVIDIR"
+    num1 = parseInt(prompt("Escribe el primer número que vamos a "+tipocalc))
+    num2 = parseInt(prompt("Ingrese el segundo número que vamos a "+tipocalc))
+    respuesta = num1 / num2
+    alert("Al "+tipocalc+" da: "+respuesta)
+// Condicionales
+    if(num1>num2){
+        alert("El número mayor es "+num1)
+    } else {
+       alert("El número mayor es "+num2)
+    }
+
+</script> -->
