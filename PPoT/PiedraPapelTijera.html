@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piedra, papel o tijera (Teoría de juegos)</title>
-</head>
+</head><link rel="stylesheet" href="css/style.css">
 <body>
-    <!-- EL SCRIPT DE CLASE BÁSICO:
+    <!-- EL SCRIPT ORIGINAL:
         <script>
             let jugador1 = prompt("Vamos a jugar piedra🪨, periódico🗞️ o tijeras✂️")
             let PC = '✂️'
@@ -21,11 +21,15 @@
              alert("Ingrese un emoji válido para jugar, por favor recargue la página")
         </script> 
     -->
+    <h1>¡Bienvenido al juego de periódico, papel o tijera!</h1>
+    <button onclick="location.reload()">JUGAR</button>
+    <script>
+        alert("¡Copia uno de estos emojis u oprime windows + . !: 🪨 para piedra, 🗞️ para papel o ✂️ para tijeras. ¡Buena suerte!")
+    </script>
     <script>
         let jugador1 = prompt("Vamos a jugar piedra 🪨, periódico 🗞️ o tijeras ✂️")
-        let PCNum = Math.floor(Math.random() * 3) // Genera un número aleatorio entre 0 y 3;
-        let PC = PCNum == 0 ? '✂️' : PCNum == 1 ? '🗞️' : '🪨' // Esto vendría a ser similar a un "SEGÚN () HACER" de PSEint
-
+        let PCNum = Math.floor(Math.random() * 3) // Genera un número aleatorio entre 0 y 3
+        let PC = PCNum == 0 ? '✂️' : PCNum == 1 ? '🗞️' : '🪨' // Esto vendría a ser como un "En caso de" de PSEint creo
         if(jugador1 == PC){
              alert("El jugador 1 y PC sacaron " + PC + ", ¡Es un EMPATE!")}
         else if(jugador1=="🗞️"){ // Si el jugador elige periódico
@@ -33,7 +37,7 @@
                  alert("¡El jugador 1 PIERDE con "+jugador1+"! PC sacó "+PC)
             } else if (PC == '🪨') {
                 alert("¡El jugador 1 GANA con "+jugador1+"! PC sacó "+PC)
-            }            
+            }
         }
         else if(jugador1=="🪨"){ // Si el jugador elige piedra
             if (PC == '✂️') {
@@ -47,11 +51,11 @@
                  alert("¡El jugador 1 PIERDE con "+jugador1+"! PC sacó "+PC)
             } else if (PC == '🗞️') {
                 alert("¡El jugador 1 GANA con "+jugador1+"! PC sacó "+PC)
-            } 
+            }
         }
         else {
-             alert("Ingrese un emoji válido para jugar");
-             alert("Recuerde que solo son válidos piedra 🪨, periódico 🗞️ y tijeras ✂️, por favor recargue la página");
+             alert("Ingrese un emoji válido para jugar")
+             alert("Recuerde que solo son válidos piedra 🪨, periódico 🗞️ y tijeras ✂️, por favor recargue la página")
         }
     </script>
     <footer>

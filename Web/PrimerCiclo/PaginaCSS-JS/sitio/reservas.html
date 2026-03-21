@@ -1,0 +1,86 @@
+<!-- Declaracion del tipo de documento HTML5 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos del documento -->
+    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas y Contacto - Restaurante Teusacá</title>
+</head>
+<body>
+    <br><br>
+
+    <h1>Registro y Reserva de Mesas</h1>
+    <br><br><br><br>
+
+    <p>Por favor llena este formulario para crear tu usuario y reservar una mesa en nuestro restaurante. (Aún no tiene conexión a base de datos PHP)</p>
+    <br><br>
+
+    <h2>Datos de registro y reserva</h2>
+    <form class="menu" action="">
+        <label>Nombre completo:</label><br>
+        <input type="text" name="nombre"><br><br>
+        
+        <label>Correo electrónico:</label><br>
+        <input type="email" name="correo"><br><br>
+
+        <label>*Crea una contraseña (OPCIONAL):</label><br>
+        <input type="password" name="clave">
+        <h5 style="font-size: xx-small; font-style: normal;">*esto te permitirá revisar tus reservas anteriores en nuestro sistema</h5>
+        <br><br>
+
+        <label>Fecha para la reserva:</label><br>
+        <input type="date" name="fecha"><br><br>
+
+        <label>Número de personas (1 a 10):</label><br>
+        <input type="number" name="personas" min="1" max="10"><br><br>
+
+        <input class="button" type="submit" value="Guardar reserva">
+    </form>
+    <br><br><br>
+
+    <h3>Últimos registros de ejemplo (quemados)</h3>
+    <table >
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+        <tr>
+            <td>Angel Felipe Ayala</td>
+            <td>25</td>
+            <td>Bogotá</td>
+        </tr>
+        <tr>
+            <td>Aura Stella Mendez</td>
+            <td>69</td>
+            <td>Bogotá</td>
+        </tr>
+    </table>
+    <br><br><br><br><br><br>
+
+    <!-- NUEVA SECCIÓN: Información de Contacto -->
+    <h2>Contacto Restaurante Teusacá</h2>
+    <div class="menu" style="text-align: center;">
+        <ul>
+            <li><strong>📍 Dirección:</strong> Diagonal 33 Bis A #14-64, Bogotá</li>
+            <li><strong>📞 Teléfono:</strong> +57 314 524 3224</li>
+            <li><strong>🌍 Ubicación:</strong> Teusaquillo, Bogotá</li>
+            <li><strong>⏰ Horario:</strong> Lunes a sábado (8:00 am a 4:00 pm)</li>
+        </ul>
+        <br>
+        <p>¡También puedes reservar llamando directamente o visitando nuestro <a href="dasdasdsada" target="_blank">Facebook (no existe)</a></p>
+    </div>
+    <br><br>
+
+    <p>Para regresar a la página principal, por favor haga <a href="../Index.html">click aquí</a>.</p>
+
+    <footer>
+        <hr> <!-- integré una etiqueta hr para crear una línea horizontal divisoria visual en lugar de usar guiones bajos "_"-->
+        <p><strong>Restaurante Teusaca</strong></p>
+        <p>Administrado por: Angel Felipe Ayala</p>
+        <p>&copy; 2026 Todos los derechos reservados. Visita nuestras <a href="../sitio/politicas_privacidad.html">políticas de privacidad.</a></p>
+    </footer>
+</body>
+</html>
