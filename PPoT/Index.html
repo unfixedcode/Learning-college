@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piedra, Periódico o Tijera (Teoría de juegos)</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 
-<!-- Marcador fijo arriba -->
+<!-- Marcador fijo arriba en el juego fijo entre todas las pantallas menos 1. -->
 <div id="marcador" class="marcador oculto">
-    <span id="marc-j1">J1: 0</span>
-    <span id="marc-ronda">Ronda 1</span>
-    <span id="marc-j2">CPU: 0</span>
+    <div id="marc-j1">J1: 0</div>
+    <div id="marc-ronda">Ronda 1</div>
+    <div id="marc-j2">CPU: 0</div>
     <button class="btn-terminar" onclick="terminarJuego()" title="Terminar juego">⏹</button>
 </div>
 
 <!-- 1. INICIO -->
-<div id="pantalla-inicio" class="pantalla activo">
+<div id="pantalla-inicio" class="pantalla activo" class="primera-pantalla">
     <h1>🪨 🗞️ ✂️</h1>
     <h2>Piedra, Periódico o Tijera</h2>
     <p class="subtitulo">¿Cómo quieres jugar?</p>
@@ -34,8 +32,8 @@
 <div id="pantalla-tipo" class="pantalla">
     <h2>¿Qué versión?</h2>
     <div class="btn-grupo">
-        <button onclick="elegirTipo('clasico')">🪨 🗞️ ✂️<br><small>Clásico</small></button>
-        <button onclick="elegirTipo('bigbang')">🪨 🗞️ ✂️ 🦎 🖖<br><small>Big Bang Theory</small></button>
+        <button onclick="elegirTipo('clasico')">🪨 🗞️ ✂️<br>Clásico</button>
+        <button onclick="elegirTipo('bigbang')">🪨 🗞️ ✂️ 🦎 🖖<br>Big Bang Theory</button>
     </div>
     <button class="btn-volver" onclick="mostrar('pantalla-inicio')">← Volver</button>
 </div>
@@ -87,7 +85,7 @@
 <div id="pantalla-turno-j1" class="pantalla fondo-j1">
     <h2>🔵 Turno del Jugador 1</h2>
     <p class="aviso">🙈 ¡Jugador 2, no mires!<br>
-    <small>Al elegir habrá 4 segundos para que J2 se prepare</small></p>
+    Al elegir habrá 4 segundos para que J2 se prepare</p>
     <div id="botones-j1" class="btn-grupo grande"></div>
 </div>
 
@@ -210,7 +208,7 @@ function resultado(a, b) {
     return (t[a] && t[a].includes(b)) ? 'a' : 'b';
 }
 
-// ─── VS CPU ────────────────────────────────────────────────────
+// VS CPU 
 function elegirCPU(eleccion) {
     if (juegoTerminado) return;
     let ops = tipo === 'bigbang' ? ['🪨','🗞️','✂️','🦎','🖖'] : ['🪨','🗞️','✂️'];
@@ -230,13 +228,13 @@ function elegirCPU(eleccion) {
     } else if (res === 'a') {
         pJ1++;
         document.body.style.backgroundColor = '#1a4a1f';
-        dj1.innerHTML += `<p class="res-txt">¡GANASTE! 🏆</p><span class="motivo-txt">${motivo[eleccion+'-'+pc]||''}</span>`;
+        dj1.innerHTML += `<p class="res-txt">¡GANASTE! 🏆</p><div class="motivo-txt">${motivo[eleccion+'-'+pc]||''}</div>`;
         dpc.innerHTML += '<p class="res-txt">Perdió 😔</p>';
     } else {
         pJ2++;
         document.body.style.backgroundColor = '#4a1010';
         dj1.innerHTML += '<p class="res-txt">Perdiste 😔</p>';
-        dpc.innerHTML += `<p class="res-txt">CPU gana 🤖</p><span class="motivo-txt">${motivo[pc+'-'+eleccion]||''}</span>`;
+        dpc.innerHTML += `<p class="res-txt">CPU gana 🤖</p><div class="motivo-txt">${motivo[pc+'-'+eleccion]||''}</div>`;
     }
 
     document.getElementById('resultado-cpu').classList.remove('oculto');
@@ -252,7 +250,7 @@ function limpiarCPU() {
     document.querySelectorAll('#botones-cpu button').forEach(b => b.disabled = false);
 }
 
-// ─── VS 2 JUGADORES ───────────────────────────────────────────
+// VS 2 JUGADORES 
 function elegirJ1(eleccion) {
     if (juegoTerminado) return;
     eleccionJ1 = eleccion;
@@ -282,13 +280,13 @@ function elegirJ2(eleccion) {
     } else if (res === 'a') {
         pJ1++;
         mj1.style.backgroundColor = '#1a4a1f'; mj2.style.backgroundColor = '#4a1010';
-        mj1.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><span class="motivo-txt">${motivo[eleccionJ1+'-'+eleccion]||''}</span>`;
+        mj1.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><div class="motivo-txt">${motivo[eleccionJ1+'-'+eleccion]||''}</div>`;
         mj2.innerHTML += '<p class="res-txt">Pierde 😔</p>';
     } else {
         pJ2++;
         mj1.style.backgroundColor = '#4a1010'; mj2.style.backgroundColor = '#1a4a1f';
         mj1.innerHTML += '<p class="res-txt">Pierde 😔</p>';
-        mj2.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><span class="motivo-txt">${motivo[eleccion+'-'+eleccionJ1]||''}</span>`;
+        mj2.innerHTML += `<p class="res-txt">¡GANA! 🏆</p><div class="motivo-txt">${motivo[eleccion+'-'+eleccionJ1]||''}</div>`;
     }
 
     actualizarMarcador();
@@ -296,7 +294,7 @@ function elegirJ2(eleccion) {
     verificarFin();
 }
 
-// ─── LÓGICA DE FIN ────────────────────────────────────────────
+// FINAL
 function verificarFin() {
     if (maxRondas === 0) return; // modo libre, no termina solo
     let mitad = Math.ceil(maxRondas / 2); // victorias para ganar la serie
