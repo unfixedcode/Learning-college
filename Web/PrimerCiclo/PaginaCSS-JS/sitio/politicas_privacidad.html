@@ -1,41 +1,55 @@
-<!-- Declaracion del tipo de documento HTML5 -->
+<!-- Declaracion del tipo de documento HTML5 // PROYECTO v1.2-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Metadatos del documento -->
     <link rel="stylesheet" href="../css/style.css"> 
-    <meta charset="UTF-8"> <!-- Codificación de caracteres en español-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptar a moviles -->
-    <!-- <div style="text-align: center;list-style-position: inside;"> Etiqueta div y flag style para centrar todo el texto y datos de la imagen y adicionalmente el flag para centrar listas también -->
-    <title>Politicas de Privaciadad - Restaurante Teusacá</title> <!-- Este es el titulo que aparece en la pestaña del navegador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas de Privacidad - Restaurante Teusacá</title>
 </head>
 <body>
-    <!-- Encabezados y titulos h1-h6--> <br><br>
+    <nav>
+        <div class="nav-brand" onclick="window.location.href='../index.html'">
+            <img src="../img/logoRest.png" alt="Logo" class="nav-logo-img">
+            <h1 class="nav-logo">Restaurante Teusacá - Sabores de Colombia</h1>
+        </div>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#mPrin-anchor">Menú Principal</a></li>
+            <li><a href="menu_postres.html">Menú de Postres</a></li>
+            <li><a href="reservas.html">Reservas y Contacto</a></li>
+        </ul>
+    </nav>
 
-    <h1>Políticas de privaciadad y tratamiento de datos personales</h1>
-    <br><br><br><br>
+    <div class="contenedor-principal">
+        <div class="seccion">
+            <h1>Políticas de privacidad y tratamiento de datos personales</h1>
+            <p>En el <strong>Restaurante Teusacá</strong> nos tomamos muy en serio tu información personal y la seguridad de tus datos de reserva.</p>
+        </div>
 
-    <p>En el <strong>Restaurante Teusacá</strong> nos tomamos muy enserio tu informacion personal y la seguridad de tus datos de reserva.</p>
-    <br><br>
+        <div class="seccion">
+            <h3>Uso de los datos recolectados</h3>
+            <p>Toda la información recolectada en nuestros formularios de registro es administrada únicamente por el administrador del restaurante, <strong>Angel Felipe Ayala</strong>. No compartimos tus datos de contacto ni tu email con terceros sin tu permiso.</p>
+        </div>
 
-    <h3>Uso de los datos recolectados</h3>
-    <p>Toda la información recolectada en nuestros formularios de registro es administrada unicamente por el administrador del restaurante, <strong>Angel Felipe Ayala</strong>. No compartimos tus datos de contacto ni tu email con terceros sin tu permiso.</p>
-    <br><br>
-
-    <h3>Derechos del usuario</h3>
-    <p>Puedes pedir que borremos tus datos en cualquier momento o actualizar tu informacion de reserva escribiendo directamente a nuestro equipo de atención al cliente vía correo electrónico a <a href="mailto:Restaurante.teusaca@gmail.com">Restaurante.teusaca@gmail.com</a>.</p>
-    <br><br><br><br><br><br>
-    
-    <p> 
-    Para regresar a la pagina principal, por favor haga <a href="../Index.html">click aquí.</a>.
-    </p>
-
-    <footer>
-        <hr> <!-- integré una etiqueta hr para crear una línea horizontal divisoria visual en lugar de usar guiones bajos "_"-->
-        <p><strong>Restaurante Teusaca</strong></p>
-        <p>Administrado por: Angel Felipe Ayala</p>
-        <p>&copy; 2026 Todos los derechos reservados. Visita nuestras <a href="../sitio/politicas_privacidad.html">políticas de privacidad.</a></p>
-    </footer>
+        <div class="seccion">
+            <h3>Derechos del usuario</h3>
+            <p>Puedes pedir que borremos tus datos en cualquier momento o actualizar tu información de reserva escribiendo directamente a nuestro equipo de atención al cliente vía correo electrónico a <a href="mailto:Restaurante.teusaca@gmail.com" class="enlace-resaltado">Restaurante.teusaca@gmail.com</a>.</p>
+        </div>
+        
+        <p class="seccion"> 
+            Para regresar a la página principal, por favor haga <a href="../index.html" class="enlace-resaltado">click aquí</a>.
+        </p>
     </div>
+
+    <footer id="footerfull">
+        <button class="button" id="contacto" onclick="alert('Gracias por visitar nuestro sitio web. ¡Esperamos verte pronto en el restaurante!'); window.open('https://wa.me/573145243224', '_blank');">
+            <img src="../img/WppIcon.png" id="wpp" alt="WhatsApp">Contáctanos
+        </button>
+        <hr>
+        <p><strong>Restaurante Teusacá</strong></p>
+        <p>Administrado por: <strong><a href="https://www.github.com/unfixedcode" alt="Perfil Github" class="enlace-resaltado" target="_blank">Angel Felipe Ayala Méndez</a></strong></p>
+        <p>&copy; 2026 Todos los derechos reservados. Visita nuestras <a href="politicas_privacidad.html" class="enlace-resaltado">políticas de privacidad</a>.</p>
+    </footer>
 </body>
 </html>
