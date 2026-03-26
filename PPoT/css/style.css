@@ -26,6 +26,11 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes pulso {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
 body {
     font-family: "nunito", sans-serif;
     background-color: var(--oscuro);
@@ -268,6 +273,7 @@ button:disabled {
 .fondo-j1 { 
     background-color: var(--azul-j1);
     margin-bottom: 12px;
+    margin-top: 50px;
     width: 100%;
     height: 100%;
 
@@ -275,11 +281,19 @@ button:disabled {
 .fondo-j2 { 
     background-color: var(--naranja-j2);
     margin-bottom: 12px;
+    margin-top: 50px;
     width: 100%;
     height: 100%;
 }
 
-.fondo-trans { background-color: #111; }
+.fondo-trans { 
+    background-color: #111;
+    opacity: 0.6;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    border-radius: 50px;
+}
 
 /* CUENTA REGRESIVA  */
 .cuenta-grande {
@@ -289,10 +303,6 @@ button:disabled {
     animation: pulso 1s ease-in-out infinite;
 }
 
-@keyframes pulso {
-    0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.18); }
-}
 
 /* PANTALLA SPLIT 2P */
 #pantalla-resultado-2p.activo {
@@ -314,7 +324,7 @@ button:disabled {
 }
 .mitad .emoji-g  { 
     font-size: 5rem;
-    box-shadow: var(--borde) 0 0 12px;
+    box-shadow: #fff 0 0 12px;
 }
 
 .mitad .etiq     { font-size: 1.1rem; color: #ddd; }
