@@ -1,16 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirection place</title>
+    <title>Redirection place - Proyectos Unfixed-code</title>
+    
+    <div>
+    <style>
+        /* Estilos generales quemados */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #fc6f03;
+            font-size: 4.5vh;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            text-shadow: 1px 1px 8px rgba(255, 0, 0, 0.411);
+            max-width: 800px;
+        }
+
+        h2 {
+            font-size: 1.8vh;
+            text-shadow: 1.5px 1.5px 25px white;
+
+        }
+
+
+        .botones-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .btn-proyecto {
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border: 2px solid #fc6f03;
+            border-radius: 8px;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-proyecto:hover {
+            background-color: #fc6f03;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(252, 111, 3, 0.4);
+        }
+
+        .btn-proyecto span {
+            font-size: 0.9rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+    </style> 
+    </div>
 </head>
 <body>
-    <p style="color: #fc6f03;">Redireccionando a la página principal</p> 
+
+    <h1>Seleccione el proyecto que va a visualizar para continuar...</h1> 
+
+    <h2>Tenga en cuenta que una vez seleccionado, no habra un botón para retornar a este menú</h2>
+    
+    <div class="botones-container">
+        <button class="btn-proyecto" onclick="irAPPoT()">
+            🎮 Proyecto PPoT (HTML, JS)
+            <span>(Piedra, Periódico, Tijeras)</span>
+        </button>
+
+        <button class="btn-proyecto" onclick="irAWeb()">
+            🌐 Proyecto Web (HTML, CSS, JS)
+            <span>(Sitio de Restaurante)</span>
+        </button>
+
+        <button class="btn-proyecto" onclick="irAPruebasJS()">
+            Otros (JS)
+            <span>(Proyectos pequeños o pruebas)</span>
+        </button>
+    </div>
+
     <script>
-        setTimeout(function() {
-            window.location.href = 'Web/PrimerCiclo/PaginaCSS-JS/index.html';
-        }, 2000);
+        function irAPPoT() {
+            window.location.href = '/PPoT/Index.html';
+        }
+
+        function irAWeb() {
+            window.location.href = '/Web/PrimerCiclo/PaginaCSS-JS/index.html';
+        }
+
+        function irAPruebasJS() {
+            window.location.href = '/PPoT/PruebasJS/index.html'
+        }
     </script>
 </body>
 </html>
