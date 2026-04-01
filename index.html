@@ -20,6 +20,7 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            position: relative;
         }
         h1, h2 {
             color: #fc6f03;
@@ -35,7 +36,6 @@
             text-shadow: 1.5px 1.5px 25px white;
 
         }
-
 
         .botones-container {
             display: flex;
@@ -74,10 +74,63 @@
             font-weight: normal;
             opacity: 0.9;
         }
+
+        #footerfull {
+            background: linear-gradient(to bottom, var(--color-fondo-principal), var(--color-texto-principal) 20%);
+            color: var(--color-texto-claro);
+            padding: 80px 20px 30px 20px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        #footerfull p {
+            margin: 10px 0;
+        }
+        #footerfull h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: var(--color-acento);
+            text-shadow: 0 0 5px var(--color-acento);
+            font-family: var(--fuente-titulos);
+        }
+
+        .btn-idioma {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            flex-direction: row;
+            z-index: 1000;
+        }
+
+        #google_translate_element {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0.001;
+            z-index: -1;
+        }
+
+        .skiptranslate iframe {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
     </style> 
     </div>
 </head>
 <body>
+
+    <button id="btn-traducir" class="btn-proyecto btn-idioma" onclick="cambiarIdiomaPersonalizado()">
+        🌐 English
+    </button>
+
+    <div id="google_translate_element"></div>
 
     <h1>Seleccione el proyecto que va a visualizar para continuar...</h1> 
 
@@ -112,6 +165,43 @@
         function irAPruebasJS() {
             window.location.href = '/PPoT/PruebasJS/index.html'
         }
+
+        function cambiarIdiomaPersonalizado() {
+            var boton = document.getElementById('btn-traducir');
+            var select = document.querySelector('.goog-te-combo');
+            
+            if (select) {
+                if (boton.innerText.includes('English')) {
+                    select.value = 'en';
+                    boton.innerText = '🌐 Español';
+                } else {
+                    select.value = 'es';
+                    boton.innerText = '🌐 English';
+                }
+                
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+            } else {
+                alert("El traductor de Google aún está cargando, intenta en un segundo.");
+            }
+        }
     </script>
+    <footer id="footerfull">
+        <hr>
+        <p><strong>Portal de Proyectos de Programación</strong></p>
+        <p>Creado por: <strong><a href="https://www.github.com/unfixedcode" alt="Perfil Github" class="enlace-resaltado" target="_blank">Angel Felipe Ayala</a></strong></p>
+        <p>Politécnico Internacional</p>
+        <h5>Traducciones por Google Translate</h5>
+    </footer>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'es,en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
