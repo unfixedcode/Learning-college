@@ -10,10 +10,10 @@
     --color-borde: #8D6E63;
     --sombra-titulos: rgba(62, 39, 35, 0.2);
     
-    /* Fuentes de letra */
     --fuente-titulos: "Georgia", "Times New Roman", serif;
     --fuente-texto: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
+
 
 html {
     background-color: var(--color-fondo-principal); 
@@ -21,6 +21,7 @@ html {
     margin: 0;
     padding: 0;
     text-align: center;
+    font-size: clamp(14px, 1.1vw, 18px);
 }
 
 body {
@@ -28,37 +29,37 @@ body {
     margin: 0;
     background-color: var(--color-fondo-principal);
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 h1, h2, h3, h4, h5 {
     font-family: var(--fuente-titulos);
     color: var(--color-acento);
-    letter-spacing: 2px;
+    letter-spacing: 0.08em;
     text-shadow: 1px 1px 3px var(--sombra-titulos);
-    padding: 15px 0;
+    padding: 0.9rem 0;
     margin: 0;
 }
 
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.75em; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: clamp(1.25rem, 2.4vw, 1.75rem); }
 
 p {
-    margin: 15px 0;
+    margin: 0.9rem 0;
+    font-size: 1rem;
 }
 
 .contenedor-principal {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 2.5rem 1.25rem;
 }
 
 .seccion {
-    margin: 50px 0;
+    margin: 3rem 0;
 }
 
-/* NAVBAR o menú superior (función sticky) */
 nav {
     background-color: var(--color-texto-principal);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -69,22 +70,25 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 1.25rem;
     box-sizing: border-box;
+    gap: 1rem;
 }
 
 .nav-brand {
     display: flex;
     align-items: center;
     cursor: pointer;
+    min-width: 0;
 }
 
 .nav-logo-img {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     object-fit: contain;
-    margin-right: 15px;
+    margin-right: 0.9rem;
     transition: transform 0.3s ease;
+    flex: 0 0 auto;
 }
 
 .nav-brand:hover .nav-logo-img {
@@ -93,12 +97,13 @@ nav {
 
 .nav-logo {
     font-family: var(--fuente-titulos);
-    font-size: 22px;
+    font-size: clamp(1rem, 1.5vw, 1.375rem);
     font-weight: bold;
     color: var(--color-acento);
     padding: 0;
     text-shadow: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
+    flex: 1;
 }
 
 .nav-brand:hover .nav-logo {
@@ -111,6 +116,9 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.25rem;
 }
 
 nav li {
@@ -121,12 +129,13 @@ nav a {
     display: block;
     color: var(--color-fondo-principal);
     text-align: center;
-    padding: 25px 20px;
+    padding: 1rem 1.1rem;
     text-decoration: none;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.9rem;
 }
 
 nav a:hover, nav a:focus {
@@ -135,10 +144,9 @@ nav a:hover, nav a:focus {
     box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.4), 0 0 20px var(--color-acento);
 }
 
-/* MENUS Y LISTAS */
 .menu {
     text-align: center;
-    margin: 20px 0;
+    margin: 1.25rem 0;
 }
 
 .menu ul {
@@ -150,14 +158,13 @@ nav a:hover, nav a:focus {
 }
 
 .menu li {
-    padding: 8px 0;
+    padding: 0.5rem 0;
     color: var(--color-texto-principal);
-    font-size: 1.1em;
+    font-size: 1.05rem;
 }
 
 .enlace-resaltado {
     color: var(--color-acento);
-    text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -167,17 +174,16 @@ nav a:hover, nav a:focus {
     text-decoration: underline;
 }
 
-/* IMÁGENES */
 .img-porcentaje {
     width: 30%;
     min-width: 250px;
+    max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .img-fija {
-    width: 400px;
-    max-width: 100%;
+    width: min(400px, 100%);
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -187,27 +193,26 @@ nav a:hover, nav a:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-    margin-top: 30px;
+    gap: 2.5rem;
+    margin-top: 1.9rem;
 }
 
 .galeria-item {
     width: 100%;
 }
 
-/* TABLAS */
 table { 
     border-collapse: collapse;
-    margin: 30px auto; 
+    margin: 1.9rem auto; 
     text-align: center; 
-    width: 80%;
-    max-width: 600px;
+    width: min(80%, 600px);
     background-color: var(--color-fondo-principal);
 }
 
 th, td {
     border: 1px solid var(--color-borde);
-    padding: 12px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
 }
 
 th {
@@ -216,64 +221,69 @@ th {
     font-family: var(--fuente-titulos);
 }
 
-/* FORMULARIO*/
+tr:nth-child(even) {
+    background-color: var(--color-fondo-secundario);
+}
+
 .formulario-reserva {
-    max-width: 500px;
+    width: min(500px, calc(100% - 2rem));
     margin: 0 auto;
     text-align: left;
     background-color: var(--color-fondo-secundario);
-    padding: 30px;
+    padding: 1.9rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-sizing: border-box;
 }
 
 .form-grupo {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .formulario-reserva label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.4rem;
     color: var(--color-texto-principal);
+    font-size: 1rem;
 }
 
 .formulario-reserva input {
     width: 100%;
-    padding: 10px;
+    padding: 0.75rem;
     border: 1px solid var(--color-borde);
     border-radius: 5px;
     box-sizing: border-box;
     font-family: var(--fuente-texto);
+    font-size: 1rem;
 }
 
 .texto-pequeno {
-    font-size: 0.8em;
+    font-size: 0.85rem;
     color: #666;
-    margin-top: 5px;
+    margin-top: 0.3rem;
     font-style: italic;
 }
 
-/* BOTONES Y OTROS */
 hr {
     border: none;
     border-top: 2px solid var(--color-acento);
-    margin: 30px auto;
-    width: 60%;
+    margin: 1.9rem auto;
+    width: min(60%, 520px);
 }
 
 .margen-top {
-    margin-top: 20px;
+    margin-top: 1.25rem;
 }
 
 .button {
     background-color: var(--color-boton);
     color: var(--color-texto-claro);
-    padding: 12px 25px;
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
     font-family: var(--fuente-texto);
@@ -285,21 +295,21 @@ hr {
 }
 
 #wpp {
-    width: 30px;
-    height: 30px;
+    width: 1.9rem;
+    height: 1.9rem;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 0.6rem;
 }
 
 #contacto {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 1.25rem;
+    right: 1.25rem;
     z-index: 1000;
     background-color: var(--color-boton); 
     border-radius: 50px;
-    padding: 15px 25px;
+    padding: 0.9rem 1.4rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
@@ -312,17 +322,189 @@ hr {
 #footerfull {
     background: linear-gradient(to bottom, var(--color-fondo-principal), var(--color-texto-principal) 20%);
     color: var(--color-texto-claro);
-    padding: 80px 20px 30px 20px;
-    margin-top: 60px;
+    padding: 5rem 1.25rem 1.9rem 1.25rem;
+    margin-top: 3.75rem;
 }
 
 #footerfull p {
-    margin: 10px 0;
+    margin: 0.6rem 0;
 }
+
 #footerfull h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
     color: var(--color-acento);
     text-shadow: 0 0 5px var(--color-acento);
     font-family: var(--fuente-titulos);
+}
+
+.modal-promo {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenido {
+    background-color: var(--color-fondo-principal);
+    padding: 1.9rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: calc(100% - 2rem);
+    text-align: center;
+    color: var(--color-texto-principal);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: 2px solid var(--color-acento);
+    box-sizing: border-box;
+}
+
+.btn-cerrar-modal {
+    background-color: var(--color-acento);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1.25rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+    nav {
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        padding: 0.85rem 0.9rem;
+    }
+
+    .nav-logo {
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        line-height: 1.5;
+    }
+
+    nav {
+        position: static;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.9rem 0.75rem;
+    }
+
+    .nav-brand {
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-logo-img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.6rem;
+    }
+
+    .nav-logo {
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    nav ul {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+    }
+
+    nav a {
+        padding: 0.8rem 0.9rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    .contenedor-principal {
+        padding: 1.5rem 0.9rem;
+    }
+
+    .seccion {
+        margin: 2rem 0;
+    }
+
+    .img-porcentaje,
+    .img-fija {
+        width: 100%;
+        min-width: 0;
+    }
+
+    table {
+        width: 100%;
+        font-size: 0.9rem;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .formulario-reserva {
+        width: calc(100% - 1rem);
+        padding: 1.1rem;
+    }
+
+    #contacto {
+        right: 0.8rem;
+        bottom: 0.8rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    #footerfull {
+        padding: 3.5rem 1rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.15rem; }
+
+    p,
+    .menu li,
+    .texto-pequeno,
+    nav a,
+    .button,
+    .btn-cerrar-modal,
+    .formulario-reserva label,
+    th, td {
+        font-size: 0.95rem;
+    }
+
+    nav a {
+        text-transform: none;
+        letter-spacing: 0.03em;
+    }
+
+    .modal-contenido {
+        padding: 1.2rem;
+    }
+
+    .button,
+    .btn-cerrar-modal {
+        width: 100%;
+    }
 }

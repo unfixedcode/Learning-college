@@ -11,13 +11,16 @@
     <nav>
         <div class="nav-brand" onclick="window.location.href='index.html'">
             <img src="img/logoRest.png" alt="Logo" class="nav-logo-img">
-            <h1 class="nav-logo">Restaurante Teusacá - Sabores de Colombia</h1>
+            <h1 class="nav-logo">Restaurante Teusacá
+                <div>Sabores de Colombia</div>
+            </h1>
         </div>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Inicio</a></li>
             <li><a href="#mPrin-anchor">Menú Principal</a></li>
             <li><a href="sitio/menu_postres.html">Menú de Postres</a></li>
             <li><a href="sitio/reservas.html">Reservas y Contacto</a></li>
+            <li><a href="sitio/entregables.html">*CLASES*</a></li>
         </ul>
     </nav>
 
@@ -32,7 +35,7 @@
         <div class="seccion">
             <h1 >Menú principal de la casa</h1>
             <p>Conoce los platos más deliciosos ofrecidos por Teusacá:</p>
-            <div class="menu">
+            <div class="menu"> 
                 <ul>
                     <li>Bandeja Paisa</li>
                     <li>Sopa de Ajiaco</li>
@@ -45,11 +48,11 @@
             <h3>Galería Fotográfica de nuestros platos</h3>
             <div class="galeria">
                 <div class="galeria-item">
-                    <p>Observa nuestro plato estrella.</p>
+                    <p>Observa nuestro plato estrella (Tamaño proporcional a la pantalla)</p>
                     <img src="img/changua.jpg" alt="Foto del caldo de Changua" class="img-porcentaje">
                 </div>
                 <div class="galeria-item">
-                    <p>Y aquí un vistazo a nuestras instalaciones.</p>
+                    <p>Y aquí un vistazo a nuestras instalaciones (Tamaño Fijo)</p>
                     <img src="img/fachada.png" alt="Fotografía de la fachada" class="img-fija">
                 </div>
             </div>
@@ -61,10 +64,14 @@
                 Si gusta revisar nuestro menú más actualizado en formato PDF, por favor haga <a href="docs/menu.pdf" target="_blank" class="enlace-resaltado">click aquí</a>.
             </p>
         </div>
+        <span class="nota" style="font-style: italic; font-size: 1.2vh;" >Nota:
+            (No existe, solo ejemplo de llamada en folder docs/menu.pdf)
+        </span>
+        </div>
 
         <div class="seccion">
-            <h5>Postres y contacto/reservas</h5>
             <div class="menu">
+                 <p>Si quieres conocer nuestro menú de postres o realizar una reserva, por favor visita las siguientes secciones:</p>
                 <ul>
                     <li><a href="sitio/menu_postres.html" class="enlace-resaltado">Ver menú de postres</a></li>
                     <li><a href="sitio/reservas.html" class="enlace-resaltado">Formulario de reservas y contacto</a></li>
@@ -74,7 +81,7 @@
     </div>
 
     <footer id="footerfull">
-        <button class="button" id="contacto" onclick="alert('Gracias por visitar nuestro sitio web. ¡Esperamos verte pronto en el restaurante!'); window.open('https://wa.me/573145243224', '_blank');">
+        <button class="button" id="contacto" onclick="alert('Gracias por visitar nuestro sitio web. ¡Esperamos verte pronto en el restaurante!'); window.open('https://wa.me/573145243224');">
             <img src="img/WppIcon.png" id="wpp" alt="WhatsApp">Contáctanos
         </button>
         <hr>
@@ -82,5 +89,29 @@
         <p>Administrado por: <strong><a href="https://www.github.com/unfixedcode" class="enlace-resaltado" target="_blank" alt="Perfil Github" >Angel Felipe Ayala Méndez</a></strong></p>
         <p>&copy; 2026 Todos los derechos reservados. Visita nuestras <a href="sitio/politicas_privacidad.html" class="enlace-resaltado">políticas de privacidad</a>.</p>
     </footer>
+    
+    <div id="promoModal" class="modal-promo">
+        <div class="modal-contenido">
+            <h2>¡Promo Especial! 🇨🇴</h2>
+            <p>Disfruta de un 10% de descuento en tu primer Ajiaco o Bandeja Paisa mencionando el código <strong>TEUSACA2026</strong> al hacer tu reserva.</p>
+            <button class="btn-cerrar-modal" id="btnCerrarModal">¡Lo quiero!</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Mostrar el modal solo si es la primera vez que visita (simulado con sessionStorage quemado en código)
+            if(!sessionStorage.getItem("promoVista")) {
+                setTimeout(function() {
+                    document.getElementById("promoModal").style.display = "flex";
+                }, 1500); // Aparece a los 1.5 segundos
+            }
+
+            document.getElementById("btnCerrarModal").addEventListener("click", function() {
+                document.getElementById("promoModal").style.display = "none";
+                sessionStorage.setItem("promoVista", "true");
+            });
+        });
+    </script>
 </body>
 </html>

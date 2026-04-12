@@ -1,0 +1,107 @@
+:root {
+    --color-fondo: #2ba1c2;
+    --color-boton: #072d38a9;
+    --color-texto1: #2ba1c2;
+    --color-texto-claro: #dadada;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: fantasy;
+    background: linear-gradient(270deg, #ff0055, #ff00ff, #7f00ff, #646464, #00ff66, #ffea00);
+    background-size: 1200% 1200%;
+    animation: viajePsicodelico 20s ease infinite;
+}
+
+@keyframes viajePsicodelico {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#J1, #J2 {
+    display: none !important; /* Profe este es un truquito que apliqué en otro css para ocultar cada ID J1 y J2 y hacerlo aparecer con JS */
+}
+
+.cajaFondo {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid var(--color-texto1);
+    text-align: center;
+}
+
+.cajaBotones {
+    display: block;
+    margin: 10px 0;
+}
+
+.options {
+    background-color: var(--color-boton);
+    color: var(--color-texto-claro);
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    border: 2px solid var(--color-texto1);
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+.options:hover {
+    background-color: #0a4152a9;
+}
+
+.botonInJu {
+    background-color: var(--color-boton);
+    color: var(--color-texto1);
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    font-style: oblique;
+    transform: scale(1);
+    box-shadow: 0 0 5px var(--color-texto1);
+    transition: transform 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+    cursor: pointer;
+    border: 2px solid var(--color-texto1);
+}
+
+#iniJue {
+    animation: botonInicio 2s infinite;
+}
+
+@keyframes botonInicio {
+    0% { transform: scale(1); box-shadow: 0 0 5px var(--color-texto1); }
+    50% { transform: scale(1.08); box-shadow: 0 0 50px var(--color-texto1); }
+    100% { transform: scale(1); box-shadow: 0 0 5px var(--color-texto1); }
+}
+
+.botonInJu:hover {
+    animation: none;
+    transform: scale(1.1);
+    box-shadow: 0 0 60px var(--color-texto1);
+}
+
+#reiniciar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+.tituloTurno {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--color-texto-claro);
+    font-family: Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 20px;
+}

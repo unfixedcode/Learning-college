@@ -147,23 +147,36 @@
             <span>(Sitio de Restaurante)</span>
         </button>
 
-        <button class="btn-proyecto" onclick="irAPruebasJS()">
-            Otros (JS)
-            <span>(Proyectos pequeños o pruebas)</span>
+        <button class="btn-proyecto" onclick="irABusqueda()">
+            🕵️‍♂️ Búsqueda Lineal y Binaria (JS)
+            <span>(Proyectos pequeños)</span>
+        </button>
+
+        <button class="btn-proyecto" onclick="irATricky()">
+            🎮 Juego de Tic Tac Toe (JS)
+            <span>(Proyectos pequeños)</span>
         </button>
     </div>
 
     <script>
         function irAPPoT() {
-            window.location.href = '/PPoT/Index.html';
+            window.location.href = 'OtrosAlgoritmos/PPoT/Index.html';
         }
 
         function irAWeb() {
-            window.location.href = '/Web/PrimerCiclo/PaginaCSS-JS/index.html';
+            window.location.href = 'Web/PrimerCiclo/PaginaCSS-JS/index.html';
+        }
+
+        function irABusqueda() {
+            window.location.href = 'OtrosAlgoritmos/Busqueda/index.html'
         }
 
         function irAPruebasJS() {
-            window.location.href = '/PPoT/PruebasJS/index.html'
+            window.location.href = 'OtrosAlgoritmos/index.html'
+        }
+
+        function irATricky() {
+            window.location.href = 'OtrosAlgoritmos/Tricky/index.html';
         }
 
         function cambiarIdiomaPersonalizado() {
@@ -193,7 +206,7 @@
         <h5>Traducciones por Google Translate</h5>
     </footer>
     
-    <script type="text/javascript">
+    <script type="text/javascript"> // Script encontrado en internet para aplicar G translate a la página 
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'es',

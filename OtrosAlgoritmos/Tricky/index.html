@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tricky o Tic Tac Toe</title>
+    <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+    <button class="botonInJu" id="iniJue" onclick="iniciarJuego()">¡Iniciar Juego de Tricky!</button>
+     
+    <div id="J1" class="cajaFondo">
+        <h1 class="tituloTurno" id="mensajeEstado">Turno del Jugador 1 (X)</h1>
+        
+        <span class="cajaBotones L1">
+            <button class="options" onclick="jugarTurno(0)"></button>
+            <button class="options" onclick="jugarTurno(1)"></button>
+            <button class="options" onclick="jugarTurno(2)"></button>
+        </span>
+        <span class="cajaBotones L2">
+            <button class="options" onclick="jugarTurno(3)"></button>
+            <button class="options" onclick="jugarTurno(4)"></button>
+            <button class="options" onclick="jugarTurno(5)"></button>
+        </span>
+        <span class="cajaBotones L3">
+            <button class="options" onclick="jugarTurno(6)"></button>
+            <button class="options" onclick="jugarTurno(7)"></button>
+            <button class="options" onclick="jugarTurno(8)"></button>
+        </span>
+
+        <button class="botonInJu" id="reiniciar" onclick="reiniciarJuego()">Reiniciar Partida</button>
+    </div>
+
+    <script src="scripts/TicTacToe.js"></script>
+</body>
+</html>
