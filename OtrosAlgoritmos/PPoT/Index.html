@@ -78,13 +78,13 @@
         <div id="res-j1" class="res-box"></div>
         <div id="res-pc" class="res-box"></div>
     </div>
-    <button id="btn-sig-cpu" class="oculto btn-siguiente" onclick="siguienteRonda()">Siguiente ronda ▶</button>
+    <button id="btn-sig-cpu" class="oculto btn-siguiente" onclick="siguienteRonda()">Siguiente ronda</button>
 </div>
 
 <!-- 6. 2P: TURNO J1 -->
 <div id="pantalla-turno-j1" class="pantalla fondo-j1">
     <h2>🔵 Turno del Jugador 1</h2>
-    <p class="aviso">🙈 ¡Jugador 2, no mires!<br>
+    <p class="aviso">¡Jugador 2, no mires!<br>
     Al elegir habrá 4 segundos para que J2 se prepare</p>
     <div id="botones-j1" class="btn-grupo grande"></div>
 </div>
@@ -92,7 +92,7 @@
 <!-- 7. TRANSICIÓN 4 SEGUNDOS -->
 <div id="pantalla-transicion" class="pantalla fondo-trans">
     <h2>✅ Jugador 1 ya eligió</h2>
-    <p>J1, tápate los ojos 🙈 · J2, ¡prepárate!</p>
+    <p>J1, tápate los ojos - J2, ¡prepárate!</p>
     <div id="cuenta-reg" class="cuenta-grande">4</div>
 </div>
 
@@ -202,7 +202,7 @@ function actualizarMarcador() {
 }
 
 function resultado(a, b) {
-    // Devuelve 'a', 'b' o 'empate'
+    // esta función es la que devuelve 'a', 'b' o 'empate'
     if (a === b) return 'empate';
     let t = tipo === 'bigbang' ? ganaBB : ganaC;
     return (t[a] && t[a].includes(b)) ? 'a' : 'b';
