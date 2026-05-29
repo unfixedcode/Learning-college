@@ -41,7 +41,7 @@ public class Estudiante {
         if (promedio >= 3.0) {
             System.out.println(nombre + " está Aprobado");
         } else {
-            System.out.println(nombre + " está Reprobado");
+            System.out.println(nombre + " está Reprobada");
         }
     }
 }
